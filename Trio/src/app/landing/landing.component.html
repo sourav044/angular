@@ -1,0 +1,17 @@
+<div *ngIf="userData.user.user_type=='admin'" class="page-header fs-20 c-848 px-3 py-3">Admin Console</div>
+<div *ngIf="userData.user.user_type=='manufacturer'" class="page-header fs-20 c-848 px-3 py-2">Manufacturer Console</div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let item of list">
+      <div class="w-100"  *ngIf="userData.user.user_type==item.role || item.role == ''">        
+        <div  class="landingCard"> 
+            <div class="cursor-pointer certifications-card text-center w-100 fs-18 c-848 p-3 my-2" [routerLink]="item.link">
+              <img [src]="item.img || 'assets/images/certificate.png'" alt="Certification Icon" class="m-auto">
+              <div class="text-truncate  fs-20 c-000 my-2 text-capitalize">{{item.name}}</div>
+              <p>{{item.description}}</p>
+            </div>
+          </div>
+        </div>
+    </div>         
+  </div>
+</div>

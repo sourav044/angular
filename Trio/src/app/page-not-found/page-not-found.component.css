@@ -1,0 +1,16 @@
+.vh-100{
+    height: 100vh;
+    background-image: url(/assets/images/pattern.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.pagenofound{
+    font-size: 75px;
+    font-weight: bold;
+    color: #3367DE;
+    font-family: 'ProximaNovaBold';
+}
+.pagenofound img{
+    max-height: 250px;
+    margin:0 20px;
+}

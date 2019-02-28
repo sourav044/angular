@@ -1,0 +1,187 @@
+<div class="p-3">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="card bg-white p-3 form-cls">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="c-282 fs-20 fw-700 d-flex align-items-center">
+            <a routerLink="/home/tickets" title="Back" class="mr-3">
+              <mat-icon>keyboard_backspace</mat-icon>
+            </a>
+            Ticket</div>
+          <button type="submit" [hidden]="enableBool" (click)="enableEdit()" class="btn btn-primary py-0 mr-2 text-uppercase " mat-button>Edit</button>
+        </div>
+        <div class="my-4">
+          <form autocomplete="off" [formGroup]="editTicketDetails" (ngSubmit)="editSubmit()">
+            <mat-form-field>
+              <input [readonly]="!enableBool"  matInput placeholder="Title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && g.title.errors }">
+            </mat-form-field>
+            <div *ngIf="submitted && g.title.errors" class="invalid-feedback">
+              <div *ngIf="g.title.errors.required">Title is required</div>
+            </div>
+            <mat-form-field>
+              <textarea [readonly]="!enableBool" matInput placeholder="Summary" formControlName="description" [ngClass]="{ 'is-invalid': submitted && g.description.errors }"></textarea>
+            </mat-form-field>
+            <div *ngIf="submitted && g.description.errors" class="invalid-feedback">
+              <div *ngIf="g.description.errors.required">Document Summary is required</div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input [readonly]="true" matInput placeholder="Ticket raised" formControlName="created_at" [ngClass]="{ 'is-invalid': submitted && g.created_at.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && g.created_at.errors" class="invalid-feedback">
+                  <div *ngIf="g.created_at.errors.required">Ticket Raised Date is required</div>
+                </div>
+              </div>
+
+              <div class="col-sm-6" [hidden]="userLogin.user.user_type == 'manufacturer'">
+                <mat-form-field>
+
+                  <mat-select [disabled]="!enableBool" placeholder="Assigned To" [value]="detailList.assigned_to" formControlName="assigned_to">
+                    <mat-option [value]="items.user_id" *ngFor="let items of listUser">
+                      {{items.name}}
+                    </mat-option>
+                  </mat-select>
+                  <!-- <input [readonly]="true" matInput placeholder="Assigned To" formControlName="assigned_to" [ngClass]="{ 'is-invalid': submitted && g.assigned_to.errors }"> -->
+                </mat-form-field>
+                <div *ngIf="submitted && g.assigned_to.errors" class="invalid-feedback">
+                  <div *ngIf="g.assigned_to.errors.required">Ticket Assigned to is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6" [hidden]="userLogin.user.user_type == 'manufacturer'">
+                <mat-form-field>
+                  <mat-select [disabled]="!enableBool" placeholder="Status" [value]="detailList.status" selectionChange="statusChange($event.value)"
+                    formControlName="status">
+                    <mat-option [value]="1">
+                      new
+                    </mat-option>
+                    <mat-option [value]="2">
+                      Inprogress
+                    </mat-option>
+                    <mat-option [value]="3">
+                      Completed
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div *ngIf="submitted && g.status.errors" class="invalid-feedback">
+                  <div *ngIf="g.status.errors.required">Status is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input disabled="!enableBool" class="cursor-disabled"  matInput placeholder="Attachments" [ngClass]="{ 'is-invalid': submitted && g.file_name.errors }">
+                </mat-form-field>
+                <ul class="nav">
+                  <li *ngFor="let item of detailList.files"> 
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'docx'">
+                      <p>
+                        <a href="https://docs.google.com/viewer?url={{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/docx-file.png" alt="docx File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'pdf'">
+                      <p>
+                        <a href="https://docs.google.com/viewer?url={{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/pdf.png" alt="PDF File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'xlsx'">
+                      <p>
+                        <a href="https://docs.google.com/viewer?url={{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/xlsx-file.png" alt="xlsx File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'png'"> 
+                      <p>
+                        <a href="{{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/png.png" alt="Png File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'jpg'">
+                      <p>
+                        <a href="{{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/jpg.png" alt="JPG File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+                    <div class="attachments" *ngIf="(item.file_name | url) == 'jpeg'">
+                      <p>
+                        <a href="{{item.file_name}}" target="_blank">
+                          <img title="Click here to view" src="assets/images/jpg.png" alt="JPEG File">
+                        </a>
+                      </p>
+                      <button [hidden]="!enableBool" class="removeBtn btn" (click)="removeAttachment(item.attachment_id)">Remove</button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <div class="form form-group" [hidden]="!enableBool">
+                  <label title="" class="upload-file w-100 text-center py-3">
+                    <span class="sprites s-upload d-block m-auto mb-2"></span> Add Attachment
+                    <input style="display:none;" accept="application/pdf,application/msword,
+                      image/x-png,image/gif,image/jpeg,image/jpg,
+                      application/vnd.openxmlformats-officedocument.wordprocessingml.document" name="csv" type="file" (change)="getFiles($event.target.files)"
+                      required>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group my-3" [hidden]="!enableBool">
+              <button [disabled]="loading" type="submit" class="btn btn-primary py-0 mr-2 text-uppercase " mat-button>Update</button>
+              <button [disabled]="loading" type="button" class="btn py-0 text-uppercase " (click)="disableEdit()" mat-button>Cancel</button>
+            </div>
+            <!-- <div *ngIf="error" class="alert alert-danger">{{error}}</div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 aside position-sticky my-3 my-sm-0">
+      <div class="card">
+        <div class="card-header fw-600 fs-16 c-000 px-2">Comments</div>
+        <div class="card-body px-2 py-2 comment-body">
+          <perfect-scrollbar>
+            <ul class="nav commetScroll d-block">
+              <p *ngIf="listComments.length == 0">No Comments found!</p>
+              <li class="w-100 c-282 py-2 my-2" *ngFor="let item of listComments">
+                <div class="commentor fs-13 text-truncate fw-600">{{item.commented_by}} </div>
+                <div class="w-100 d-flex justify-content-between mt-1 mb-2 c-848 fs-12">
+                  <div class="commented-date">{{item.created_at}} </div>
+                  <div class="commented-time">{{item.created_time}}</div>
+                </div>
+                <div class="comment-body">
+                  {{item.comment}}
+                </div>
+              </li>
+            </ul>
+          </perfect-scrollbar>
+        </div>
+        <div class="card-footer px-0 py-0 bg-transparent addComments position-relative">
+          <form [formGroup]="addComments" (ngSubmit)="onSubmit()">
+            <div class="w-100">
+              <input type="text" formControlName="comment" class="w-100" placeholder="Type comment here" />
+            </div>
+            <div class="position-absolute comments-submit">
+              <button [disabled]="!addComments.valid" type="submit" class="btn s-commentsubmit sprites cursor-pointer"></button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </div>
+            <!-- <div *ngIf="error" class="alert alert-danger">{{error}}</div> -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

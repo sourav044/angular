@@ -1,0 +1,54 @@
+
+<div class="container-fluid">
+  <div class="row ">
+      <div class="col-sm-12 mt-3">
+
+    <div class="text-capitalize fs-20 d-flex align-items-center justify-content-between">
+        <div class="d-flex align-items-center">
+      <a routerLink="/home" title="Back" class="mr-3"><mat-icon>keyboard_backspace</mat-icon></a>
+         Movie Tickets
+        </div>
+        <button class="btn btn-primary disable pr-4 text-capitalize" mat-button mat-raised-button >
+          <mat-icon class="plus-btn">add</mat-icon> Book Ticket
+        </button>
+    </div>
+  </div>
+
+
+
+  </div>
+  <div class="tickets-container">
+    <div class="w-100 text-center">
+      <div *ngIf="ticketList.length == 0">
+          <p [hidden]="!loading">loading...</p>
+          <p [hidden]="loading">No records found!</p>
+      </div>
+    </div>
+
+    <ul class="nav row">
+      <li class="col-md-4 cursor-pointer" *ngFor="let item of ticketList | paginate: { itemsPerPage: 9, currentPage: p }" [routerLink]="['/home/tickets-details',item.ticket_id]">
+        <div class="tickets-card card p-2 my-2 c-282">
+          <div class="tickets-head fs-20">{{item.title}}</div>
+          <div class="tickets-body my-2 c-b2b">{{item.description}}</div>
+          <div class="tickets-footer row no-gutters">
+            <div class="col-sm-4 text-truncate d-flex align-items-center">
+              <span class="sprites s-user"></span> {{item.raised_by}}</div>
+            <div class="col-sm-5 text-truncate d-flex align-items-center">
+              <span class="sprites s-date"></span> {{item.created_at}}</div>
+            <div class="col-sm-3 text-truncate d-flex align-items-center" *ngIf="item.status == 1">
+              <span class="sprites s-progress"></span> New
+            </div>
+            <div class="col-sm-3 text-truncate d-flex align-items-center" *ngIf="item.status == 2">
+              <span class="sprites s-progress"></span> Inprogress
+            </div>
+            <div class="col-sm-3 text-truncate d-flex align-items-center" *ngIf="item.status == 3">
+              <span class="sprites s-progress"></span> Complete
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <pagination-controls *ngIf="ticketList.length != 0" (pageChange)="p = $event"></pagination-controls>
+  </div>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

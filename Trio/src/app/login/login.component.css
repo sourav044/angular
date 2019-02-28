@@ -1,0 +1,25 @@
+.login-container{
+    background-image: url('/assets/images/login-background.png');
+    background-position: top left;
+    background-size: cover;
+    height: 100vh;
+    background-color: #ffffff;
+}
+.login-form{
+    width:450px;
+    max-width: 100%;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}  
+.form-group a{
+    color:#000000;
+    text-decoration:none;
+}
+.custom-select.is-invalid, .form-control.is-invalid, .was-validated .custom-select:invalid, .was-validated .form-control:invalid {
+    border-color: #dc3545 !important;
+}
+.mat-icon {
+    cursor: pointer;
+    color: #ddd;
+}

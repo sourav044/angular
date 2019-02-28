@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\_guards",
+    "\\src\\app\\_helpers",
+    "\\src\\environments"
+  ],
+  "SelectedNode": "\\src\\app\\_guards\\auth.guard.ts",
+  "PreviewInSolutionExplorer": false
+}

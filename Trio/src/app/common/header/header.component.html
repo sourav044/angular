@@ -1,0 +1,57 @@
+<div class="header bg-primary py-2 position-fixed w-100">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-6 col-sm-4 col-lg-3 col-xl-2 order-1 order-sm-1">
+        <div class="logo">
+          <a routerLink="/home">
+            <img src="assets/images/trio-logo.png" alt="Trio Logo">
+          </a>
+        </div>
+      </div>
+      <div class="col-12 col-sm-5 col-lg-4 col-xl-3 order-3 order-sm-2 mt-3 mt-sm-0">
+        <!-- <div class="topbar-search position-relative">
+          <input type="text" class="form-control" placeholder="Search here">
+        </div> -->      
+ 
+      </div>
+      <div class="col-6 col-sm-3 col-lg-5 col-xl-7 d-flex justify-content-end order-2 order-sm-3">
+        <ul class="nav d-flex align-items-center rounded-circle">
+          <li class="nav-item">            
+              <div class="position-relative">
+                <a class="cursor-pointer notification-btn" >
+              <span class="sprites s-bell"></span>
+              <span class="notification-count position-absolute rounded-circle" *ngIf="notificationIcon.length != 0">{{notificationIcon.length}}</span>
+            </a>
+          </div>
+          </li>
+          <li class="nav-item user-info ml-5" >
+            <img src="assets/images/imagenotavailable.jpg" class="rounded-circle cursor-pointer" [matMenuTriggerFor]="menu">
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item routerLink="/home/my-profile">My Profile</button>
+              <button mat-menu-item routerLink="/">Logout</button>
+            </mat-menu>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="notification-container">
+  <div class="position-relative w-100">
+<div class="notification-head fw-600 bg-white d-flex align-items-center justify-content-between">
+  Notifications
+    <button class="btn notification-close-btn">X</button>
+</div>
+<div class="notification-list">
+  <ul class="nav flex-column">
+
+<li *ngFor="let item of notificationsList" [ngClass]="{'statusRead':item.read_status== 1,'statusUnRead':item.read_status==0}" (click)="changeStatus(item.notification_id)">
+  <a class="c-000" *ngIf="item.certificate_id!=null" [routerLink]="['/home/details',item.certificate_id]">{{item.notification}}</a>
+  <a class="c-000" *ngIf="item.ticket_id!=null" [routerLink]="['/home/tickets-details',item.ticket_id]">{{item.notification}}</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+

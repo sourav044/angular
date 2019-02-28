@@ -1,0 +1,50 @@
+.upload-file {
+    border: 1px solid #3367DE;
+    border-radius: 5px;
+    color: #3367DE;
+    font-weight: normal;
+    cursor: pointer;
+}
+.user-profile-img img{
+    width: 70px;
+    height:70px;
+}
+.card{
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .08);
+    margin-bottom: 1rem;
+}
+.userlist li{
+    width: 100%;    
+}
+.userlist li a{ 
+    width: 100%;
+    display:block;    
+    padding:10px;
+    text-decoration: none;
+    border-bottom: 1px solid #dddddd;
+    display: flex;
+    align-items: center;
+    display: -webkit-flex;
+    color: #535353;
+    transition:0.5s;
+}
+.userlist li a.active, .userlist li a:hover{     
+    background-color: #3367de;
+    color: #ffffff  !important;
+    transition:0.5s;
+}
+.userlist li a.active .mat-icon.material-icons,
+.userlist li a:hover .mat-icon.material-icons{     
+    color: #ffffff !important;
+}
+
+.userlist li:last-child a{     
+    border-bottom: 0px solid #dddddd;
+}
+.userlist .mat-icon{
+    margin-right:10px;
+}
+.mat-form-field {
+    display: block;
+}

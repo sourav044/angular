@@ -1,0 +1,28 @@
+perfect-scrollbar {
+    height: calc(100vh - 185px);
+}
+textarea.mat-input-element {
+    background-color: #F2F2F2;
+    color: #282828;
+    line-height: 22px;
+    padding: 10px;
+}
+.attachments{
+    width: 50px;
+    text-align: center;
+    margin: 0 2px;
+}
+.attachments img{
+    margin: auto;
+}
+.removeBtn {
+    background-color: transparent;
+    padding: 0;
+    font-size: 12px;
+}
+p{
+    margin-bottom: 5px;
+}
+.cursor-disabled{
+    pointer-events: none !important;
+}

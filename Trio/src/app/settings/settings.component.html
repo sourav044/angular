@@ -1,0 +1,38 @@
+<div class="container-fluid">
+  <div class="card my-3">
+    <div class="card-header text-capitalize fs-20 d-flex align-items-center">
+      <a routerLink="/home" title="Back" class="mr-3">
+        <mat-icon>keyboard_backspace</mat-icon>
+      </a> Settings
+    </div>
+    <div class="d-flex align-items-center justify-content-end px-3 mt-3">
+      <button class="btn btn-primary" mat-button mat-raised-button (click)="addFieldDialog()">
+          <mat-icon class="plus-btn">add</mat-icon>  Add New Field
+      </button>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="fs-16 fw-600 c-000 table-head px-3 py-2">List of fields</div>
+        <div class="fs-16 fw-600 col-sm-12 text-center" *ngIf="settingsData.length == 0">
+            <p [hidden]="!loading">loading...</p>
+            <p [hidden]="loading">No records found!</p>
+        </div>
+        <ul class="nav w-100 fs-16 c-000 Settings">
+          <li *ngFor="let item of settingsData">
+            <div class="row">              
+              <div class="col-sm-6">{{item.place_holder}}</div>
+              <div class="col-sm-3">{{item.field_type}}</div>
+              <div class="col-sm-3">
+                <button mat-button mat-raised-button (click)="editFieldDialog(item.field_id)">
+                  <mat-icon>edit</mat-icon>
+                </button> 
+                <mat-slide-toggle (click)="activeInactiveStatus(item.field_status,item.field_id)"  [checked]="item.field_status == 1" [color]='blue'></mat-slide-toggle>               
+              </div>             
+            </div>
+          </li>  
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

@@ -1,0 +1,93 @@
+<div class="container py-3 mt-5">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body p-2 d-flex align-items-center">
+          <div class="user-profile-img mr-2">
+            <img src="assets/images/imagenotavailable.jpg" alt="User Picture" class="rounded-circle">
+          </div>
+          <div class="user-profile-details text-truncate">
+            <p class="mb-1">
+              <small>Hello,</small>
+            </p>
+            <div class="user-name w-100 text-truncate font-weight-bold text-capitalize" *ngIf="userData">{{userData.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-body p-0">
+          <ul class="nav flex-column userlist fs-16  ">
+            <li>
+              <a routerLink="/home">
+                <mat-icon>home</mat-icon> Home</a>
+            </li>
+            <li>
+              <a routerLink="/home/my-profile" class="active">
+                <mat-icon>person</mat-icon> My Profile</a>
+            </li>
+            <li>
+              <a routerLink="/home/change-password">
+                <mat-icon>refresh</mat-icon> Change Password</a>
+            </li>
+            <li>
+              <a routerLink="">
+                <mat-icon>touch_app</mat-icon> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-between fs-16 fw-700">Personal Information
+          <button [disabled]="loading" type="submit" [hidden]="enableBool" (click)="enableEdit()" class="btn btn-primary py-0 mr-2 text-uppercase "
+            mat-button>Edit</button>
+        </div>
+        <div class="card-body">
+          <form autocomplete="off" [formGroup]="userProfile" (ngSubmit)="onSubmit()" autocomplete="off" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field>
+                  <input [readonly]="!enableBool" matInput placeholder="Name" formControlName="name" [ngClass]="{ 'is-invalid': submitted && g.name.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && g.name.errors" class="invalid-feedback">
+                  <div *ngIf="g.name.errors.required">Name is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input [readonly]="true" [pattern]="emailPattern" matInput placeholder="Email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && g.email.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && g.email.errors" class="invalid-feedback">
+                  <div *ngIf="g.email.errors.required">Email is required</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <mat-form-field>
+                  <input [readonly]="true" matInput placeholder="User Type" formControlName="user_type" [ngClass]="{ 'is-invalid': submitted && g.user_type.errors }">
+                </mat-form-field>
+                <div *ngIf="submitted && g.user_type.errors" class="invalid-feedback">
+                  <div *ngIf="g.user_type.errors.required">User Type is required</div>
+                </div>
+              </div>
+              <!-- <div class="col-sm-6 user-profile-img" [hidden]="!enableBool">
+                <input type='file' (change)="readURL($event);" accept='image/*' />
+                <img id="blah" [src]="imageSrc || 'assets/images/imagenotavailable.jpg'" alt="your image" />
+                <div *ngIf="submitted && g.profile_picture.errors" class="invalid-feedback">
+                  <div *ngIf="g.profile_picture.errors.required"> Profile picture is required</div>
+                </div>
+              </div> -->
+            </div>
+            <div class="form-group my-3" [hidden]="!enableBool">
+              <button [disabled]="loading" type="submit" class="btn btn-primary py-0 mr-2 text-uppercase " mat-button>Save</button>
+              <button [disabled]="loading" type="button" class="btn py-0 text-uppercase " (click)="disableEdit()" mat-button>Cancel</button>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-loader [hidden]="!loading"></app-loader>

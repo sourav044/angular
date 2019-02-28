@@ -1,0 +1,19 @@
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #ffffff;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #ffffff;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #ffffff;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #ffffff;
+  }
+ 
+  .statusRead{
+    background-color:#ffffff;
+  }
+  .statusUnRead{
+    background-color:#efefef;
+  }

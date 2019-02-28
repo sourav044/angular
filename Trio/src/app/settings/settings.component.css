@@ -1,0 +1,39 @@
+
+.table-head{
+    background: rgba(51, 103, 222, 0.1);
+}
+.Settings mat-icon.mat-icon.material-icons {
+    color: #3367DE;
+    font-size: 19px;
+}
+.Settings .mat-button, .Settings .mat-flat-button, .Settings .mat-icon-button, .Settings .mat-stroked-button {
+    min-width: 10px;
+    line-height: 36px;
+    padding: 0 10px;
+    border-radius: 2px;
+}
+.Settings .row {
+    align-items: center;
+}
+.Settings li {
+    width: 50%;
+    display: inline-block;
+    border-bottom: 1px solid #dddddd;
+    padding: 5px 15px;
+}
+.Settings li:nth-child(odd) {
+    border-right: 1px solid #dddddd;
+}
+    
+.Settings button{
+    box-shadow: 0 0 0 0 !important;
+    line-height: 25px !important;
+}
+.mat-option-text{
+    text-transform: capitalize !important;
+}
+@media(max-width:575px){
+    .Settings li {
+        width: 100%;
+    }
+}
