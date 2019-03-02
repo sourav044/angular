@@ -8,14 +8,15 @@ export class AuthenticationService {
     constructor(private http: HttpClient) { }
 
     login(email: string, password: string)  {
-
+        
+        console.log(email);
        // ------------ API ------------------
-       return this.http.get<any>(environment.apiUrl+'Login', {})
+       return this.http.post<any>(environment.apiUrl+'Login', ({ email: email, password: password }))
            .pipe(map((res:any) => {
                // login successful if there's a jwt token in the response
                   console.log(res);
                    // store username and jwt token in local storage to keep user logged in between page refreshes
-                   localStorage.setItem('currentUser',JSON.stringify({ user:"Sam", type:"admin", token: "45XME#ihdsjbju232rds%#$sdf" }));
+                   localStorage.setItem('currentUser',JSON.stringify({ user: res.user, type: res.type, token: res.token  }));
                    return res;
                
             }));
