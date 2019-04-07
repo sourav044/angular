@@ -10,15 +10,14 @@ import {
 import {
   environment
 } from '../../environments/environment';
+import { reject } from 'q';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthenticationService {
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string) {
-
+    
     // ------------ API ------------------
     return this.http.post < any > (environment.apiUrl + 'Login', ({
         email: email,
@@ -26,7 +25,7 @@ export class AuthenticationService {
       }))
       .pipe(map((res: any) => {
         // login successful if there's a jwt token in the response
-        console.log(res);
+        alert(res);
         localStorage.setItem('currentUser', JSON.stringify({
           user: res.user,
           type: res.type,
@@ -37,7 +36,6 @@ export class AuthenticationService {
       }));
   }
 
-
   LoginStatus(): boolean {
     if (localStorage["currentUser"] == null) {
       return true;
@@ -45,5 +43,16 @@ export class AuthenticationService {
       return false;
 
     }
+  }
+
+  LogOut() {
+           
+      return new Promise((resolve,reject) =>{
+      setTimeout(() => {
+        localStorage["currentUser"] = null;
+         resolve(true);
+      },100);
+      });
+           
   }
 }

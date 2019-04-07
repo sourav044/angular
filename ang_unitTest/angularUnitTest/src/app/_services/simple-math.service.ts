@@ -6,26 +6,23 @@ import { ValueConverter } from '@angular/compiler/src/render3/view/template';
 })
 export class SimpleMathService {
  
-  value = 0;
+  value = 1;
    
 
-  constructor() { }
+  constructor() { this.value =1; }
 
   increment() {
     if (this.value < 15) {
-      this.value += 1;
-       
+      this.value += 1;       
     } else {
       return 'Maximum reached!';
     }
-
     return this.value;
   }
 
   decrement() {
     if (this.value > 0) {
-      this.value -= 1;
-        
+      this.value -= 1;        
     } else {
        return 'Minimum reached!';
     }
@@ -33,15 +30,14 @@ export class SimpleMathService {
   }
   
   DExpection(firstvalue : number, secondvalue : number)
-  {
- 
+  { 
    if(firstvalue != 0)
    {
      return firstvalue/secondvalue;
    }
-   throw("Error");
-
+   return "Error";
   }
 
+  
 
 }
