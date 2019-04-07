@@ -10,7 +10,7 @@ This project gives an overview about testing approach for
 2) Custom Services 
 3) DOM Component 
 
-<img src="https://img.labnol.org/di/github-file-hosting.png" alt="Sections">
+<img src="https://i.ibb.co/S3KcXkB/Utest.jpg" alt="Sections">
 
 
 
