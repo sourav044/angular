@@ -10,7 +10,7 @@ This project gives an overview about testing approach for
 2) Custom Services 
 3) DOM Component 
 
-<img src="https://ibb.co/S3KcXkB" alt="Sections">
+<img src="https://i.ibb.co/XCzDZnt/Utest.jpg" alt="Sections">
 
 
 
