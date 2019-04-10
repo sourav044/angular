@@ -12,10 +12,10 @@ This application has modules :
 
 1) Login  - Http Request and Local Storage. 
 2) Dashboard  - User Account, Notification menu and Menu Options. Routing -user authentication validation and rediecting to dashboard. 
-3) Ticket Booking  - Http request and  Uploading of file. "Subscribe"  - Lazy Loading emits multiple value.
+3) Ticket Booking  - Http request and Pagination. "Subscribe"  - Lazy Loading emits multiple value.
 4) Oxford API  -  Passing text as a parameter. "Promise" - Not lazy, Emit Single Value. 
 
---- Pending Work
+--- Pending Work----
 1) Forget Password  
 2) User Account 
 
