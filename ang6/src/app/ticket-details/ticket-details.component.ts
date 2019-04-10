@@ -18,6 +18,7 @@ export class TicketDetailsComponent implements OnInit {
   submit = false;
   returnUrl: string;
   error = '';
+  
   constructor(
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
@@ -27,6 +28,7 @@ export class TicketDetailsComponent implements OnInit {
     private ticketService:TicketService) { }
     ticketId:any;
     userLogin:any = [];
+  
   ngOnInit() {
     $(function(){
       $("body").addClass("bg-gray");
@@ -49,4 +51,5 @@ export class TicketDetailsComponent implements OnInit {
 
   }
   listUser:any = [];
+
 }
