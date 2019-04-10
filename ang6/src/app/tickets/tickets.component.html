@@ -1,40 +1,53 @@
-
 <div class="container-fluid">
   <div class="row ">
-      <div class="col-sm-12 mt-3">
+    <div class="col-sm-12 mt-3">
 
-    <div class="text-capitalize fs-20 d-flex align-items-center justify-content-between">
+      <div class="text-capitalize fs-20 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-      <a routerLink="/home" title="Back" class="mr-3"><mat-icon>keyboard_backspace</mat-icon></a>
-         Movie Tickets
+          <a routerLink="/home" title="Back" class="mr-3">
+            <mat-icon>keyboard_backspace</mat-icon>
+          </a>
+          Movie Tickets
         </div>
-        <button class="btn btn-primary disable pr-4 text-capitalize" mat-button mat-raised-button >
+        <button class="btn btn-primary disable pr-4 text-capitalize" mat-button mat-raised-button>
           <mat-icon class="plus-btn">add</mat-icon> Book Ticket
         </button>
+      </div>
     </div>
   </div>
 
-
-
-  </div>
   <div class="tickets-container">
     <div class="w-100 text-center">
       <div *ngIf="ticketList.length == 0">
-          <p [hidden]="!loading">loading...</p>
-          <p [hidden]="loading">No records found!</p>
+        <p [hidden]="!loading">loading...</p>
+        <p [hidden]="loading">No records found!</p>
       </div>
     </div>
-
     <ul class="nav row">
-      <li class="col-md-4 cursor-pointer" *ngFor="let item of ticketList | paginate: { itemsPerPage: 9, currentPage: p }" [routerLink]="['/home/tickets-details',item.ticket_id]">
-        <div class="tickets-card card p-2 my-2 c-282">
-          <div class="tickets-head fs-20">{{item.Title}}</div>
-          <div class="tickets-body my-2 c-b2b">{{item.Type]}}</div>
-          <div class="tickets-footer row no-gutters">
-            <div class="col-sm-4 text-truncate d-flex align-items-center">
-              <span class="sprites s-user"></span> {{item.imdbID}}</div>
-            <div class="col-sm-5 text-truncate d-flex align-items-center">
-              <span class="sprites s-date"></span> {{item.Year}}</div>            
+      <li class="col-md-4 cursor-pointer"
+        *ngFor="let item of ticketList | paginate: { itemsPerPage: 9, currentPage: p }"
+        [routerLink]="['/home/tickets-details',item.ticket_id]">
+
+        <div class="container">
+          <div class="row flex-column-reverse flex-md-row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <img class="card-img" src="{{item.poster}}" alt="Card image">
+                </div>
+                <div class="card-body">
+                  <div class="card-title tickets-head fs-20"> Title: {{item.title}}</div>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-4 metadata">
+                        <i class="fa fa-star" aria-hidden="true"> Year {{item.year}} </i>
+                        <p>IMDB: {{item.imdbID}}</p>
+                      </div>                       
+                    </div>
+                  </div>                                  
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </li>

@@ -12,10 +12,19 @@ export class OxfordService {
 
   getDefinition(data) {
 
-         return this.http.get<any>(environment.apiUrl +''+ data)
-          .pipe(map((res:any) => {
-            console.log(res)
-              return res.data;
-          }));
-    }
+    let promise = new Promise((resolve, reject) => {
+    let apiURL = environment.apiUrl +'Dictionary?val='+ data;
+    this.http.get(apiURL)
+      .toPromise()
+      .then(
+        res => { // Success
+          console.log(res.json());
+          resolve();
+        }
+      );
+  });
+  return promise;
+
+    
+  }
 }

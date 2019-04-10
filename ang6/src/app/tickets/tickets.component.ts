@@ -38,11 +38,19 @@ export class TicketsComponent implements OnInit {
         console.log(data);
         this.loading = false;
         this.ticketList = data;
+        for(let obj of  this.ticketList)
+      {
+         console.log(obj.title);
+         
+      }
       },error =>{
         this.loading = false;
         this.toastrService.error('Trio', error);
       });
 
+      
+
+      
     
       }
   }

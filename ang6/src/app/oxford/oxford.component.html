@@ -1,38 +1,32 @@
-
-
 <div class="container-fluid">
   <div class="row ">
-      <div class="col-sm-12 mt-3">
+    <div class="col-sm-12 mt-3">
 
-    <div class="text-capitalize fs-20 d-flex align-items-center justify-content-between">
+      <div class="text-capitalize fs-20 d-flex align-items-center justify-content-between">
         <div class="d-flex align-items-center">
-      <a routerLink="/home" title="Back" class="mr-3"><mat-icon>keyboard_backspace</mat-icon></a>
+          <a routerLink="/home" title="Back" class="mr-3">
+            <mat-icon>keyboard_backspace</mat-icon>
+          </a>
           Online Oxford Dictionary
         </div>
         <input type="text" class="form-control" [(ngModel)]="this.SearchWord" placeholder="Search" />
         <button class="btn btn-primary pr-4 text-capitalize" mat-button mat-raised-button (click)="search_word()">
           <mat-icon class="plus-btn">search</mat-icon>
         </button>
+      </div>
     </div>
-  </div>
   </div>
   <div class="tickets-container">
     <div class="w-100 text-center">
       <div *ngIf="DefinitionList.length == 0">
-          <p [hidden]="!loading">loading...</p>
-          <p [hidden]="loading">No records found!</p>
+        <p [hidden]="!loading">loading...</p>
+        <p [hidden]="loading">No records found!</p>
       </div>
     </div>
 
     <ul class="nav row">
-      <li class="col-md-4 cursor-pointer" *ngFor="let item of DefinitionList" [routerLink]="['/home']">
-        <p> {{item.word}} <p>
-      </li>
+       <p>{{DefinitionList}}</p>
     </ul>
   </div>
 </div>
 <app-loader [hidden]="!loading"></app-loader>
-
-
-
-

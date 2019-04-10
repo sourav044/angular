@@ -7,6 +7,7 @@ import { listener } from '@angular/core/src/render3/instructions';
 
 @Injectable()
 export class UserService {
+   
     @Output() getUsers: EventEmitter<any> = new EventEmitter();
     constructor(private http: HttpClient) { }
 

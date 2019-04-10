@@ -3,8 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { map } from 'rxjs/operators';
 import { EventEmitter } from '@angular/core';
+
 @Injectable({ providedIn: 'root' })
 export class TicketService {
+   
     @Output() getTickets:EventEmitter<any> = new EventEmitter();
     constructor(private http: HttpClient) { }
 
@@ -15,6 +17,7 @@ export class TicketService {
            return res;
         }));
     }
+   
     createTicket(data){
         return this.http.post<any>(environment.apiUrl+'MovieCreate', data)
         .pipe(map((res:any) => {
@@ -22,6 +25,7 @@ export class TicketService {
             return res.data;
         }));
     }
+   
     editTicket(data){
         return this.http.put<any>(environment.apiUrl+'MovieDetails', data)
         .pipe(map((res:any) => {

@@ -22,6 +22,7 @@
     "@angular/platform-browser": "^6.0.3",
     "@angular/platform-browser-dynamic": "^6.0.3",
     "@angular/router": "^6.0.3",
+    "angular-json-tree": "^1.1.0",
     "angular4-files-upload": "^1.0.2",
     "bootstrap": "^4.1.2",
     "core-js": "^2.5.4",

@@ -38,16 +38,8 @@ export class OxfordComponent implements OnInit {
   search_word(): void {
 
     this.loading = true;
-    this.oxfordService.getDefinition(this.SearchWord)
-    .subscribe(
-      data=>{
-        this.loading = false;
-        this.DefinitionList = data;
-      },error =>{
-        this.loading = false;
-        this.toastrService.error('Trio', error);
-      });
+    this.DefinitionList=this.oxfordService.getDefinition(this.SearchWord);
+    this.loading = false;
 
   }
-
 }
