@@ -36,10 +36,8 @@ export class OxfordComponent implements OnInit {
 
 
   search_word(): void {
-
     this.loading = true;
     this.DefinitionList=this.oxfordService.getDefinition(this.SearchWord);
     this.loading = false;
-
   }
 }
