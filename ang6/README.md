@@ -6,22 +6,52 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+# Application Design
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This application has modules :
 
-## Build
+1) Login  - Http Request and Local Storage. 
+2) Dashboard  - User Account, Notification menu and Menu Options. Routing -user authentication validation and rediecting to dashboard. 
+3) Ticket Booking  - Http request and  Uploading of file. "Subscribe"  - Lazy Loading emits multiple value.
+4) Oxford API  -  Passing text as a parameter. "Promise" - Not lazy, Emit Single Value. 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+--- Pending Work
+1) Forget Password  
+2) User Account 
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+<a href="https://ibb.co/tHGLTX4"><img src="https://i.ibb.co/D1JrHpt/Login.png" alt="Login" border="0"></a><br /><a target='_blank' href='https://de.imgbb.com/'>bilderupload</a><br />
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+<a href="https://ibb.co/bQvYFV9"><img src="https://i.ibb.co/pbKNQTF/dashboard.png" alt="dashboard" border="0"></a>
 
-## Further help
+<a href="https://ibb.co/5LNBgr0"><img src="https://i.ibb.co/cQGDS6B/5913468323233792.jpg" alt="5913468323233792" border="0"></a>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
