@@ -15,19 +15,22 @@ export class TicketsComponent implements OnInit {
   
 
   constructor(
-    public dialog: MatDialog,
-    private ticketService:TicketService,
-    private toastrService:ToastrService
-  ) {
+  
+  public dialog: MatDialog,
+  private ticketService:TicketService,
+  private toastrService:ToastrService
+     ) {
     ticketService.getTickets.subscribe(data => this.listTickets())
-   }
-   p: number = 1;
+    }
+  p: number = 1;
+  
   ngOnInit() {
     this.listTickets();
     $(function () {
       $("body").addClass("bg-gray");
     });
   }
+
   ticketList:any =[];
   loading:boolean;
   listTickets(){
@@ -38,21 +41,16 @@ export class TicketsComponent implements OnInit {
         console.log(data);
         this.loading = false;
         this.ticketList = data;
-        for(let obj of  this.ticketList)
-      {
-         console.log(obj.title);
-         
-      }
+       for(let obj of  this.ticketList)
+       {
+         console.log(obj.title);         
+       }
+	   
       },error =>{
         this.loading = false;
         this.toastrService.error('Trio', error);
       });
-
-      
-
-      
-    
-      }
-  }
+    }
+ }
  
 
