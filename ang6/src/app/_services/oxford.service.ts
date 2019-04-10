@@ -22,8 +22,8 @@ export class OxfordService {
           resolve();
         }
       );
-  });
-  return promise;
+    });
+    return promise;
 
     
   }

@@ -8,6 +8,7 @@ import { EventEmitter } from '@angular/core';
 export class TicketService {
    
     @Output() getTickets:EventEmitter<any> = new EventEmitter();
+	
     constructor(private http: HttpClient) { }
 
     getAll() {

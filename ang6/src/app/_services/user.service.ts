@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { EventEmitter } from '@angular/core';
 import { listener } from '@angular/core/src/render3/instructions';
 
+
 @Injectable()
 export class UserService {
    
@@ -49,6 +50,7 @@ export class UserService {
                 return res.data;
             }));
     }
+	
     user_profile(data) {
         return this.http.post(environment.apiUrl + 'user-profile-update', data)
             .pipe(map((res: any) => {
