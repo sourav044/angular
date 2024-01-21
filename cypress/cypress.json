@@ -7,10 +7,10 @@
   "projectId": "pr1avv",
   "chromeWebSecurity": false,
   "env": {
-    "content_manager_url": "https://dpe.davidsystems.com",
+    "content_manager_url": "https://dpe.amazon.com",
     "dpe_token" : "MjAyMTA4MDMxMDQwMDAwMDA6TUtBOlJPQURUVTpyb2FkdHU=",
-    "amazon audio_scheduling_url" : "http://10.1.4.157:6584/",
-    "amazon audio_admin_url" : "http://10.1.4.157:6585/"
+    "amazon_audio_scheduling_url" : "http://10.1.4.157:6584/",
+    "amazon_audio_admin_url" : "http://10.1.4.157:6585/"
   },
   "testFiles": "**/*.{feature,features}"
 
