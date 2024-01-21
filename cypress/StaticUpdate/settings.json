@@ -1,8 +1,0 @@
-{
-	"digasDpeHost": "https://dpe22.davidsystems.com",
-	"formats": [
-		{ "name": "48 kHz 16 bit", "sampleRate": 48000, "resolution": 16 },
-		{ "name": "44.1 kHz 16 bit", "sampleRate": 44100, "resolution": 16 },
-		{ "name": "48 kHz 24 bit", "sampleRate": 48000, "resolution": 24 }
-	]
-}
