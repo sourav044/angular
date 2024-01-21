@@ -5,7 +5,7 @@ Feature: Create Scheduling
   Background:
     Given I navigate to amazon audio SCHEDULING page
 
-  @caseId1
+  @caseId-1
   Scenario: Create Scheduling
     When I click on Create new Schedule Button
     When I fill "Test Schedule Automation" in Name

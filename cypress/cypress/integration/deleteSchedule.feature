@@ -5,7 +5,7 @@ Feature: Delete the Schedules Created By Automation Testing
   Background:
     Given I navigate to amazon audio SCHEDULING page
 
-  @caseId136903
+  @caseId-6
   Scenario: Create 2 Schedules
     When I click on Create new Schedule Button
     When I fill "Test Schedule delete 2" in Name
